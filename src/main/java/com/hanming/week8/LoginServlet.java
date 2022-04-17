@@ -1,11 +1,14 @@
-package com.hanming.controller;
+package com.hanming.week8;
 
 import com.hanming.dao.UserDao;
 import com.hanming.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -49,29 +52,12 @@ public class LoginServlet extends HttpServlet {
             UserDao userDao = new UserDao();
             User user = userDao.findByUsernamePassword(con, username, password);
             if (user != null) {
-
-                /*week 8 code*/
-
-                HttpSession session = request.getSession(); // new a session
-                System.out.println("session id ==>" + session.getId());
-
+                // create cookie code
+                Cookie sessionId = new Cookie("SessionId", ""+user.getId());
+                sessionId.setMaxAge(20); //10 sec -- 10min
+                response.addCookie(sessionId);
                 System.out.println("登入成功");
-                /*achieve remember Me*/
-                // set user in session, can get in many jsp or servlet
-                if (request.getParameter("rememberMe").equals("1")) {
-                    Cookie cUserNameCookie = new Cookie("cUserName", request.getParameter("username"));
-                    Cookie cPassWordCookie = new Cookie("cPassWord", request.getParameter("password"));
-                    Cookie rememberMeCookie = new Cookie("rememberMe", request.getParameter("rememberMe"));
-                    // setMaxAge
-                    cUserNameCookie.setMaxAge(5);
-                    cPassWordCookie.setMaxAge(5);
-                    rememberMeCookie.setMaxAge(5);
-                    // response add cookie
-                    response.addCookie(cUserNameCookie);
-                    response.addCookie(cPassWordCookie);
-                    response.addCookie(rememberMeCookie);
-                }
-                session.setAttribute("user", user);
+                request.setAttribute("user", user);
                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request, response);
             } else {
                 //out.print("Username or password Error!!!");

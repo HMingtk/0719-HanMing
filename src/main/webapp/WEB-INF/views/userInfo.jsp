@@ -9,7 +9,11 @@
 <%@include file="header.jsp"%>
 <h1> User Info</h1>
 <%
-    User user = (User) request.getAttribute("user");
+//    Cookie[] cookies = request.getCookies();
+//    for (Cookie c : cookies){
+//        out.println(c.getName());
+//    }
+    User user = (User) session.getAttribute("user");
 %>
 <table>
     <tr>
@@ -23,7 +27,9 @@
 </tr><tr>
     <td>Birth Date:</td><td><%=user.getBirthdate()%></td>
 </tr>
-
+<tr>
+    <a href="updateUser">Update User</a>
+</tr>
 </table>
 
 <%@include file="footer.jsp"%>
