@@ -9,7 +9,7 @@
 <%@include file="header.jsp"%>
 <h1> Update User Info</h1>
 <%
-    String username = null, password = null, email = null, gender = null;
+    String username = null, password = null, email = null, gender = "";
     Date birthDate = null;
     User user = (User) session.getAttribute("user");
     if (user != null) {
