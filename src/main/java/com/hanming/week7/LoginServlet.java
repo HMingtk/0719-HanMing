@@ -1,4 +1,4 @@
-package com.hanming.week8;
+package com.hanming.week7;
 
 import com.hanming.dao.UserDao;
 import com.hanming.model.User;

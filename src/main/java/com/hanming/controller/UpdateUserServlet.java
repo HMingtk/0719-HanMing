@@ -38,10 +38,10 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //when method =post -request come in doPost
-
         //get all data - from Request
         User user = new User();
         User user1 = (User) request.getSession().getAttribute("user");
+
         user.setId(user1.getId());
         user.setUsername(request.getParameter("username"));//get Username <input type="text" name="username" />
         user.setPassword(request.getParameter("password"));
