@@ -1,3 +1,4 @@
+<%@ page import="com.hanming.model.User" %>
 <html>
 <head>
     <title>My Online Shop</title>
