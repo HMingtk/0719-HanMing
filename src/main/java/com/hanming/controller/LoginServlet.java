@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // doPost(request,response);//call dopost
         //when user click Login from menu- method is get
+        System.out.println(request.getContextPath());
         request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
     }
 
@@ -71,12 +72,13 @@ public class LoginServlet extends HttpServlet {
                     response.addCookie(cPassWordCookie);
                     response.addCookie(rememberMeCookie);
                 }
+                System.out.println(request.getRequestURI());
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("WEB-INF/views/index.jsp").forward(request, response);
             } else {
                 //out.print("Username or password Error!!!");
                 request.setAttribute("message", "Username or Password Error!!!");
-                request.getRequestDispatcher("WEB-INF/views/login.jsp");
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
             }//end of else
 
 
