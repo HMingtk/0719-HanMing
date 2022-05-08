@@ -30,7 +30,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // doPost(request,response);//call dopost
         //when user click Login from menu- method is get
-        System.out.println(request.getContextPath());
         request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
     }
 
