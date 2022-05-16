@@ -36,7 +36,14 @@
     <li>${fName[0]} ${lName[0]} --> ${cName["Ellison"]}</li>
     <li>${fName[1]} ${lName[1]} --> ${cName[lName[1]]}</li>
     <li>${fName[2]} ${lName[2]} --> ${cName["McNealy"]}</li>
-
+</ul>
+<hr>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<h2>Use c:forEach to get items from array</h2>
+<ul>
+    <c:forEach var="l" items="${fName}">
+        <li>${l}</li>
+    </c:forEach>
 </ul>
 </body>
 </html>
