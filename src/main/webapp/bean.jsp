@@ -32,6 +32,7 @@ Message(use java code): <%=bean.getMessage()%>
 <!-- get message by jsp:getProperty -->
 Message(use getProperty): <jsp:getProperty name="bean" property="message"/>
 
+
 <jsp:setProperty name="bean" property="message" value='<%=request.getParameter("msg")%>'/>
 
 <!-- get message by jsp:getProperty -->
